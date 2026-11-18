@@ -20,12 +20,6 @@ def callback(repo):
     if repo["name"] == "pop":
         print("skipping", flush=True)
         return
-    if repo["name"] == "linux":
-        print("skipping", flush=True)
-        return
-    if repo["name"] == "linux-firmware":
-        print("skipping", flush=True)
-        return
 
 
     if args.ssh:

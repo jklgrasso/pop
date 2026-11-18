@@ -274,6 +274,18 @@ fn main() {
                     r#"#!/usr/bin/env bash
 
 CHROOT="/srv/chroot/{suite}-{arch}-sbuild"
+if [ ! -d "$CHROOT" ]
+then
+    set -ex
+
+    sudo auto-apt-proxy sbuild-createchroot \
+        '--include=gnupg,auto-apt-proxy' \
+        '--components=main,restricted,universe,multiverse' \
+        '--arch={arch}' \
+        '{suite}' \
+        "$CHROOT" \
+        '{ubuntu_mirror}'
+fi
 "#,
                     arch = arch.id(),
                     suite = suite.id(),
